@@ -1,0 +1,20 @@
+{
+  "name": "@pppp606/chatgpt-log-to-markdown",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/pppp606/uni-color-palette",
+  "repository": "https://github.com/pppp606/uni-color-palette",
+  "bugs": "https://github.com/pppp606/uni-color-palette/issues",
+  "license": "MIT",
+  "scripts": {
+    "generate": "ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "axios": "^1.6.8"
+  },
+  "engines": {
+    "node": ">=16.14.0"
+  }
+}
