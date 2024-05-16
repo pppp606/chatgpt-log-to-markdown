@@ -11,9 +11,10 @@ npm install
 ## Usage
 1. Get Shared Links
 Get the link of the article you want to convert
+
 https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq
 
 2. Run Script
 ```bash
-npm run generate https://chat.openai.com/share/c68cffb0-053b-495f-91fe-00336ab83e6e
+npm run generate https://chat.openai.com/share/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
