@@ -9,10 +9,7 @@ npm install
 ```
 
 ## Usage
-1. Get Shared Links
-Get the link of the article you want to convert
-
-https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq
+1. [Get Shared Links of the article you want to convert](https://help.openai.com/en/articles/7925741-chatgpt-shared-links-faq)
 
 2. Run Script
 ```bash
