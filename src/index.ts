@@ -15,18 +15,19 @@ async function fetchHTML(url: string) {
 
 // Function to extract JSON data from the HTML string
 function extractJSONData(html: string) {
-  const scriptTagStart = '<script id="__NEXT_DATA__" type="application/json" crossorigin="anonymous">';
+  const scriptTagStart = /<script nonce=".[^"]*">window\.__remixContext/;
   const scriptTagEnd = '</script>';
 
-  const startIndex = html.indexOf(scriptTagStart);
+  const startIndex = html.search(scriptTagStart);
   const endIndex = html.indexOf(scriptTagEnd, startIndex);
 
   if (startIndex === -1 || endIndex === -1) {
-    console.error('No JSON data found in <script id="__NEXT_DATA__">');
+    console.error('No JSON data found in <script> tag.');
     process.exit(1);
   }
 
-  const jsonString = html.slice(startIndex + scriptTagStart.length, endIndex);
+  const jsonString = html.slice(startIndex, endIndex).split('window.__remixContext = ')[1].split(';__remixContext')[0];
+
   return JSON.parse(jsonString);
 }
 
@@ -69,10 +70,12 @@ async function main() {
   const html = await fetchHTML(url);
   const jsonData = extractJSONData(html);
 
+  const data = jsonData.state.loaderData['routes/share.$shareId.($action)'].serverResponse.data;
+
   const id = url.split('/').pop();
-  const title = jsonData.props.pageProps.serverResponse.data.title;
-  const createTime = jsonData.props.pageProps.serverResponse.data.create_time;
-  const mapping = jsonData.props.pageProps.serverResponse.data.mapping;
+  const title = data.title;
+  const createTime = data.createTime;
+  const mapping = data.mapping;
   const markdownContent = formatToMarkdown(title, createTime, mapping);
 
   const filePath = path.join(__dirname, `${id}.md`);
